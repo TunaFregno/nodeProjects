@@ -7,8 +7,8 @@ export const geocoder = (address, callback) => {
         address
       )}&access_token=pk.eyJ1IjoidGluaXRhcyIsImEiOiJja3I1M2JoNmEzMThhMnpxYXNoMnJ4c3dzIn0.IzaW7j4EZTLatjnW08yKww&limit=1`
     )
-    .then((response) => {
-      if (response.data.features.length === 0) {
+    .then(({ data }) => {
+      if (data.features.length === 0) {
         callback(
           "Error! Unable to find location. Please try again with a different search term.",
           undefined
@@ -17,9 +17,9 @@ export const geocoder = (address, callback) => {
       }
 
       callback(undefined, {
-        latitude: response.data.features[0].properties.coordinates.latitude,
-        longitude: response.data.features[0].properties.coordinates.longitude,
-        location: response.data.features[0].properties.full_address,
+        latitude: data.features[0].properties.coordinates.latitude,
+        longitude: data.features[0].properties.coordinates.longitude,
+        location: data.features[0].properties.full_address,
       });
     })
     .catch((error) => {
@@ -35,8 +35,8 @@ export const forecast = (latitude, longitude, callback) => {
     .get(
       `https://api.weatherstack.com/current?access_key=24e29f710adf5bac98fbff04620b6f07&query=${latitude},${longitude}`
     )
-    .then((response) => {
-      if (response.data.error) {
+    .then(({ data }) => {
+      if (data.error) {
         callback(
           "Error! Unable to find location. Please try again.",
           undefined
@@ -44,7 +44,7 @@ export const forecast = (latitude, longitude, callback) => {
         return;
       }
 
-      const dataRes = `${response.data.current.weather_descriptions[0]}. It is currently ${response.data.current.temperature} degrees out and it feels like ${response.data.current.feelslike} degrees.`;
+      const dataRes = `${data.current.weather_descriptions[0]}. It is currently ${data.current.temperature} degrees out and it feels like ${data.current.feelslike} degrees.`;
       callback(undefined, dataRes);
     })
     .catch((error) => {

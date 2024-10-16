@@ -2,19 +2,19 @@ import { geocoder, forecast } from "./lib/utils.js";
 
 const command = process.argv[2];
 
-geocoder(command, (err, res) => {
+geocoder(command, (err, { latitude, longitude, location } = {}) => {
   if (!command) return console.log("Please provide a location");
 
   if (err) {
     return console.log(err);
   }
 
-  forecast(res.latitude, res.longitude, (error, response) => {
+  forecast(latitude, longitude, (error, response) => {
     if (error) {
       return console.log(error);
     }
 
-    console.log(res.location);
+    console.log(location);
     console.log(response);
   });
 });
