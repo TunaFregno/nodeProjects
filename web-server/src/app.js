@@ -24,7 +24,7 @@ app.use(express.static(publicDir));
 app.get("/", (req, res) => {
   res.render("index", {
     title: "My Weather App",
-    h1: "Weather ☀️",
+    h1: "Weather 🌞",
     name: "Valentina Sulbaran",
   });
 });
@@ -63,7 +63,6 @@ app.get("/weather", (req, res) => {
       }
 
       res.send({
-        icon: "🧜‍♀️",
         location,
         response,
       });

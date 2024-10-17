@@ -30,6 +30,22 @@ h1 {
   margin-bottom: 16px;
 }
 
+input {
+  padding: 7px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 7px;
+  cursor: pointer;
+  border: 2px solid #efefef;
+  color: #757575;
+}
+
+.resulsTag .icon {
+  font-size: 30px;
+}
+
 footer {
   color: #888;
   border-top: 1px solid #eee;
