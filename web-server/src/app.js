@@ -23,7 +23,7 @@ app.use(express.static(publicDir));
 
 app.get("/", (req, res) => {
   res.render("index", {
-    title: "My Weather App",
+    title: "Weather App",
     h1: "Weather 🌞",
     name: "Valentina Sulbaran",
   });
